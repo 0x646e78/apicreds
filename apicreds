@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+output=$(python $DIR/apicreds.py "$@")
+if [[ "$output" =~ ^export.* ]]; then
+  $output
+else
+  echo "$output"
+fi
