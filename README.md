@@ -13,7 +13,7 @@ Install
 
 2) Install dependencies:
 ```bash
-sudo pip install simple-crypt
+pip install simple-crypt
 ```
 
 Use
