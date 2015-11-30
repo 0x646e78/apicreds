@@ -1,13 +1,11 @@
 apicreds
 ========
 
-A secure API credential management system.  Credentials are stored in an AES encrypted filestore.
+A more secure than plaintext API credential management system.  Credentials are stored in an AES encrypted filestore.
 
 Presently tailored for AWS, work in progress to make this more generic.
 
-Load at the start of your work session.  
-
-Credentials stay in your shell environment for the remainder of your session.
+Load at the start of your work session.  Credentials stay in your shell environment for the remainder of your session.
 
 
 Install
