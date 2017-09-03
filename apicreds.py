@@ -74,7 +74,8 @@ def main():
         if args.insert:
             localfile = LocalFile('insert', args.keyfile)
         else:
-            print "File % does not exist. Exiting." % args.keyfile
+            print "File %s does not exist. Exiting." % args.keyfile
+            sys.exit(1)
     else:
         localfile = LocalFile('read', args.keyfile)
         keyfile = localfile.keyfile
