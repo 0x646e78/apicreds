@@ -21,7 +21,9 @@ pip install -r requirements.txt
 
 3) I suggest adding the repo location to $PATH
 
-    cd apicreds && printf "\n# ApiCreds\nPATH=$PATH:$(pwd)" >> ~/.bashrc
+```bash
+cd apicreds && printf "\n# ApiCreds\nPATH=$PATH:$(pwd)" >> ~/.bashrc
+```
 
 Use
 ----
