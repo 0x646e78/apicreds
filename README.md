@@ -3,9 +3,9 @@ apicreds
 
 A more secure than plaintext API credential management system.  Credentials are stored in an AES encrypted filestore.
 
-Presently tailored for AWS, work in progress to make this more generic.
+This is presently tailored for AWS, the idea is to make this more generic.
 
-Load at the start of your work session.  Credentials stay in your shell environment for the remainder of your session.
+You can use it to load creds into your environment at the start of your work session, or just print them once if you prefer.
 
 
 Install
@@ -19,26 +19,21 @@ Install
 pip install -r requirements.txt
 ```
 
-3) Add to your local PATH:
+3) I suggest adding the repo location to $PATH
 
-As an example:
-
-    echo PATH=${PATH}:$(pwd)>>~/.bashrc
+    cd apicreds && printf "\n# ApiCreds\nPATH=$PATH:$(pwd)" >> ~/.bashrc
 
 Use
 ----
 
-By default your keys will be stored in an AES encrypted file at ~/.apicreds.aes
+By default your keys will be stored in an AES encrypted file at `~/.apicreds.aes`
 
-You can change this location with the switch -f
+You can change this location with the switch `-f`
 
-I suggest adding the repo location to $PATH
-```
-cd apicreds && printf "\n# ApiCreds\nPATH=$PATH:$(pwd)" >> ~/.bashrc
-```
-Upon your first use, you will be prompted to choose a passphrase. Make it a good one.
+Upon your first use, you will be prompted to choose a passphrase.
 
-### Store a credential set
+### Storing a credential set
+
 ```
 $ apicreds -i
 Enter your passphrase>
@@ -50,7 +45,8 @@ Enter your AWS Secret Key: <SECRET-ACCESS-KEY>
 Enter the default region for this environment (blank for none):
 ```
 
-### Export variables into your current shell
+### Exporting variables into your current shell
+
 ```
 . apicreds -e <env>
 ```
