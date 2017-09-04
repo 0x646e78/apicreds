@@ -16,8 +16,14 @@ Install
 2) Install dependencies:
 
 ```bash
-pip install simple-crypt
+pip install -r requirements.txt
 ```
+
+3) Add to your local PATH:
+
+As an example:
+
+    echo PATH=${PATH}:$(pwd)>>~/.bashrc
 
 Use
 ----
@@ -54,11 +60,6 @@ Enter the default region for this environment (blank for none):
 ```
 apicreds -l
 ```
-
-Tested On
----------
-
-* Debian 7 with GNU Bash, version 4.2.37
 
 TODO
 -----
