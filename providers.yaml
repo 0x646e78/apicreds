@@ -1,0 +1,16 @@
+---
+
+providers:
+  aws:
+    description:
+      describe: Description
+      env: false
+    id:
+      describe: Access Key ID
+      env: AWS_ACCESS_KEY_ID
+    secret:
+      describe: Secret Access Key
+      env: AWS_SECRET_ACCESS_KEY
+    region:
+      describe: Default Region
+      env: AWS_DEFAULT_REGION

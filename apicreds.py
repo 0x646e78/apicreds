@@ -109,7 +109,7 @@ def main():
         sys.stderr.write(str("\nEnter the default region for this environment (blank for none): "))
         awsregion = raw_input()
 
-        keys[apienv] = {"description": awsdesc, "id": awsid, "secret": awspass, "region": awsregion} 
+        keys[apienv] = {"provider": "aws", "description": awsdesc, "id": awsid, "secret": awspass, "region": awsregion} 
         keyfile = yaml.dump(keys)
         localfile.encryptor(keyfile)
     elif args.delete:
@@ -133,22 +133,20 @@ def main():
         keyfile = yaml.dump(keys)
         localfile.encryptor(keyfile)
     else:
+        with open ('providers.yaml', 'r') as f:
+            providers = yaml.load(f)
         keys = yaml.load(localfile.keyfile)
         if args.list:
             for key in keys:
                 if args.env and not key in args.env:
                     continue
                 print '\nEnvironment: ', key
-                print 'Description: ', keys[key]["description"] 
-                print 'Access Key ID: ' + keys[key]["id"]
-                print 'Default region: ' + keys[key]["region"] 
-
+                for element,value in providers['providers']['aws'].items():
+                    print value['describe'], ':',  keys[key][element]
         else:
-            print 'export AWS_ACCESS_KEY_ID=' + keys[args.env]["id"]
-            print 'export AWS_SECRET_ACCESS_KEY=%s' % keys[args.env]["secret"]
-            if keys[args.env]["region"]:
-                print 'export AWS_DEFAULT_REGION=' + keys[args.env]["region"]
-                print 'export AWS_REGION=' + keys[args.env]["region"]
+            for element,value in providers['providers']['aws'].items():
+                if value['env']:
+                    print "export %s=%s" % (value['env'], keys[args.env][element])
     
 if __name__ == "__main__":
     main()
