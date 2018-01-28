@@ -61,7 +61,7 @@ def main():
     parser.add_argument('-i','--insert', help='Insert a new credential set', action="store_true")
     parser.add_argument('-l','--list', help='List stored environments', action="store_true")
     parser.add_argument('-u','--update', help='Update a stored environment', action="store_true")
-    parser.add_argument('-d','--delete', help='Delete stored environments', action="store_true")
+    parser.add_argument('-d','--delete', help='Delete stored environments', nargs='?', const='none')
     parser.add_argument('--new-passphrase', help='Update the storage passphrase', action="store_true")
     parser.add_argument('-v','--verbose', help='Increase verbosity', action="store_true")
     args = parser.parse_args()
@@ -113,11 +113,11 @@ def main():
         keyfile = yaml.dump(keys)
         localfile.encryptor(keyfile)
     elif args.delete:
-        if not args.env:
+        if args.delete is 'none':
             sys.stderr.write(str("\nEnter the name of the API environment to delete: "))
             apienv = raw_input()
         else:
-            apienv = args.env
+            apienv = args.delete
 
         keys = yaml.load(keyfile)
 
@@ -133,7 +133,7 @@ def main():
         keyfile = yaml.dump(keys)
         localfile.encryptor(keyfile)
     else:
-        with open ('providers.yaml', 'r') as f:
+        with open (os.path.join(os.path.dirname(__file__), 'providers.yaml'), 'r') as f:
             providers = yaml.load(f)
         keys = yaml.load(localfile.keyfile)
         if args.list:
@@ -142,7 +142,8 @@ def main():
                     continue
                 print '\nEnvironment: ', key
                 for element,value in providers['providers']['aws'].items():
-                    print value['describe'], ':',  keys[key][element]
+                    if keys[key][element] and element != 'secret':
+                        print value['describe'], ':',  keys[key][element]
         else:
             for element,value in providers['providers']['aws'].items():
                 if value['env']:
