@@ -21,7 +21,7 @@ class LocalFile:
                 sys.stderr.write(str("Key file %s does not exist. Would you like to create a new keyfile?\ny/n (n): " % keyfile))
                 decision = raw_input()
                 if decision.lower() in ['y', 'yes']:
-                    self.passwd = getpass('Enter your passphrase> ')
+                    self.passwd = getpass('Enter a passphrase to protect your key file> ')
                 else:
                     exit(1)
             else:
