@@ -91,7 +91,7 @@ def main():
             apienv = args.env
 
         if 'keyfile' in locals():
-            keys = yaml.load(keyfile)
+            keys = yaml.load(keyfile, Loader=yaml.FullLoader)
         else:
             keys = {}
 
@@ -119,7 +119,7 @@ def main():
         else:
             apienv = args.delete
 
-        keys = yaml.load(keyfile)
+        keys = yaml.load(keyfile, Loader=yaml.FullLoader)
 
         if apienv not in keys:
             print "%s not found in credential set" % apienv
@@ -134,8 +134,8 @@ def main():
         localfile.encryptor(keyfile)
     else:
         with open (os.path.join(os.path.dirname(__file__), 'providers.yaml'), 'r') as f:
-            providers = yaml.load(f)
-        keys = yaml.load(localfile.keyfile)
+            providers = yaml.load(f, Loader=yaml.FullLoader)
+        keys = yaml.load(localfile.keyfile, Loader=yaml.FullLoader)
         if args.list:
             for key in keys:
                 if args.env and not key in args.env:

@@ -16,6 +16,8 @@ Install
 2) Install dependencies:
 
 ```bash
+virtualenv venv
+. venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -23,6 +25,12 @@ pip install -r requirements.txt
 
 ```bash
 cd apicreds && printf "\n# ApiCreds\nPATH=$PATH:$(pwd)" >> ~/.bashrc
+```
+
+4) Currently doesn't work with OSX bash sessions enabled, so:
+
+```bash
+touch ~/.bash_sessions_disable file
 ```
 
 Use
