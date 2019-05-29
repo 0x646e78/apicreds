@@ -1,2 +1,3 @@
-pyyaml
-simple-crypt
+pycrypto>=2.6.1
+PyYAML>=5.1
+simple-crypt>=4.1.7
