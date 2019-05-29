@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # yeah, so my refactoring has started, and so this is presently pretty ugly - but it works!
 
@@ -13,7 +13,9 @@ from simplecrypt import encrypt, decrypt
 default_keyfile = "~/.apicreds.aes"
 
 class LocalFile:
-    """Encrypt creds in a local AES file"""
+    """
+    Encrypt creds in a local AES file
+    """
     def __init__(self, action, keyfile):
         self.filename = keyfile
         if not os.path.exists(keyfile):
